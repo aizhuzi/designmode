@@ -1,5 +1,7 @@
 package com.bamboo.dedignmode;
 
+import com.bamboo.dedignmode.BuilderMode.ConcreteBuilder;
+import com.bamboo.dedignmode.BuilderMode.Diretor;
 import com.bamboo.dedignmode.FactoryMode.AbstractPad;
 import com.bamboo.dedignmode.FactoryMode.AbstractProductsFactory;
 import com.bamboo.dedignmode.FactoryMode.AbstractWatch;
@@ -33,7 +35,8 @@ public class TestMain {
 //        System.out.println("_____________________________");
 //        testAbstractFactory();
         //testObserver();
-        testTemplateMethod();
+        //testTemplateMethod();
+        testBuilder();
 
     }
     //简单工厂模式测试方法
@@ -68,14 +71,12 @@ public class TestMain {
         subject.addObserver(wpObserver);
         subject.updateObserver("赶快更新");
     }
-    //模板方法模式测试方法
-    public static void testTemplateMethod(){
-        AliChannel aliChannel=new AliChannel();
-        WechatChannel wechatChannel=new WechatChannel();
-        BaiduChannel baiduChannel=new BaiduChannel();
-        TemplateCommon.getInstance().begin(aliChannel);
-        TemplateCommon.getInstance().begin(wechatChannel);
-        TemplateCommon.getInstance().begin(baiduChannel);
+
+    //建造者模式测试方法
+    private  static void testBuilder(){
+        ConcreteBuilder concreteBuilder=new ConcreteBuilder();
+        Diretor diretor=new Diretor(concreteBuilder);
+        diretor.creatBuilder("联发科","大猩猩玻璃","8G");
     }
 
 }
