@@ -17,6 +17,10 @@ import com.bamboo.dedignmode.ObserverMode.AndroidObserver;
 import com.bamboo.dedignmode.ObserverMode.ConcreteSubject;
 import com.bamboo.dedignmode.ObserverMode.IOSObserver;
 import com.bamboo.dedignmode.ObserverMode.WPObserver;
+import com.bamboo.dedignmode.StragetyMode.AndroidStragety;
+import com.bamboo.dedignmode.StragetyMode.IOSStragety;
+import com.bamboo.dedignmode.StragetyMode.StragetyContext;
+import com.bamboo.dedignmode.StragetyMode.WPStragety;
 import com.bamboo.dedignmode.TemplateMethodMode.AliChannel;
 import com.bamboo.dedignmode.TemplateMethodMode.BaiduChannel;
 import com.bamboo.dedignmode.TemplateMethodMode.TemplateCommon;
@@ -36,7 +40,8 @@ public class TestMain {
 //        testAbstractFactory();
         //testObserver();
         //testTemplateMethod();
-        testBuilder();
+       // testBuilder();
+        testStragety();
 
     }
     //简单工厂模式测试方法
@@ -77,6 +82,18 @@ public class TestMain {
         ConcreteBuilder concreteBuilder=new ConcreteBuilder();
         Diretor diretor=new Diretor(concreteBuilder);
         diretor.creatBuilder("联发科","大猩猩玻璃","8G");
+    }
+    //策略模式测试方法
+    private static void testStragety(){
+        AndroidStragety androidStragety=new AndroidStragety();
+        StragetyContext stragetyContextOne=new StragetyContext(androidStragety);
+        stragetyContextOne.buyPhone();
+        IOSStragety iosStragety=new IOSStragety();
+        StragetyContext stragetyContextTwo=new StragetyContext(iosStragety);
+        stragetyContextTwo.buyPhone();
+        WPStragety wpStragety=new WPStragety();
+        StragetyContext stragetyContextThree=new StragetyContext(wpStragety);
+        stragetyContextThree.buyPhone();
     }
 
 }
