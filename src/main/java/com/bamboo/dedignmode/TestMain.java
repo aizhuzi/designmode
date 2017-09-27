@@ -2,6 +2,9 @@ package com.bamboo.dedignmode;
 
 import com.bamboo.dedignmode.BuilderMode.ConcreteBuilder;
 import com.bamboo.dedignmode.BuilderMode.Diretor;
+import com.bamboo.dedignmode.DecoratorMode.AndroidDecorator;
+import com.bamboo.dedignmode.DecoratorMode.ConcreteComponent;
+import com.bamboo.dedignmode.DecoratorMode.IOSDecorator;
 import com.bamboo.dedignmode.FactoryMode.AbstractPad;
 import com.bamboo.dedignmode.FactoryMode.AbstractProductsFactory;
 import com.bamboo.dedignmode.FactoryMode.AbstractWatch;
@@ -41,7 +44,8 @@ public class TestMain {
         //testObserver();
         //testTemplateMethod();
        // testBuilder();
-        testStragety();
+        //testStragety();
+        testDecorator();
 
     }
     //简单工厂模式测试方法
@@ -94,6 +98,15 @@ public class TestMain {
         WPStragety wpStragety=new WPStragety();
         StragetyContext stragetyContextThree=new StragetyContext(wpStragety);
         stragetyContextThree.buyPhone();
+    }
+    //装饰着模式测试方法
+    private static void testDecorator(){
+        ConcreteComponent concreteComponent=new ConcreteComponent();
+        AndroidDecorator androidDecorator=new AndroidDecorator(concreteComponent);
+        androidDecorator.operate("安卓");
+        System.out.println("__________________________________________");
+        IOSDecorator iosDecorator=new IOSDecorator(concreteComponent);
+        iosDecorator.operate("IOS");
     }
 
 }
