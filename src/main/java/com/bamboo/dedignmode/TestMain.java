@@ -5,6 +5,10 @@ import com.bamboo.dedignmode.BuilderMode.Diretor;
 import com.bamboo.dedignmode.DecoratorMode.AndroidDecorator;
 import com.bamboo.dedignmode.DecoratorMode.ConcreteComponent;
 import com.bamboo.dedignmode.DecoratorMode.IOSDecorator;
+import com.bamboo.dedignmode.FacadeMode.Facade;
+import com.bamboo.dedignmode.FacadeMode.InitFuction;
+import com.bamboo.dedignmode.FacadeMode.LoginFuction;
+import com.bamboo.dedignmode.FacadeMode.PayFuction;
 import com.bamboo.dedignmode.FactoryMode.AbstractPad;
 import com.bamboo.dedignmode.FactoryMode.AbstractProductsFactory;
 import com.bamboo.dedignmode.FactoryMode.AbstractWatch;
@@ -45,7 +49,8 @@ public class TestMain {
         //testTemplateMethod();
        // testBuilder();
         //testStragety();
-        testDecorator();
+        //testDecorator();
+        testFacade();
 
     }
     //简单工厂模式测试方法
@@ -108,5 +113,17 @@ public class TestMain {
         IOSDecorator iosDecorator=new IOSDecorator(concreteComponent);
         iosDecorator.operate("IOS");
     }
+
+    //外观模式测试方法
+    private static void testFacade(){
+        InitFuction initFuction=new InitFuction();
+        LoginFuction loginFuction=new LoginFuction();
+        PayFuction payFuction=new PayFuction();
+        Facade facade=new Facade(loginFuction,initFuction,payFuction);
+        facade.init();
+        facade.login();
+        facade.pay();
+    }
+
 
 }
