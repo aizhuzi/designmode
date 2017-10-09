@@ -20,6 +20,9 @@ import com.bamboo.dedignmode.FactoryMode.SimpleAndroid;
 import com.bamboo.dedignmode.FactoryMode.SimpleIOS;
 import com.bamboo.dedignmode.FactoryMode.SimplePhoneFactory;
 import com.bamboo.dedignmode.FactoryMode.SimpleWindowPhone;
+import com.bamboo.dedignmode.FlyWeightMode.ConcreteFlyWeight;
+import com.bamboo.dedignmode.FlyWeightMode.FlyWeight;
+import com.bamboo.dedignmode.FlyWeightMode.FlyWeightFactory;
 import com.bamboo.dedignmode.ObserverMode.AndroidObserver;
 import com.bamboo.dedignmode.ObserverMode.ConcreteSubject;
 import com.bamboo.dedignmode.ObserverMode.IOSObserver;
@@ -50,7 +53,8 @@ public class TestMain {
        // testBuilder();
         //testStragety();
         //testDecorator();
-        testFacade();
+        //testFacade();
+        testFlyWeight();
 
     }
     //简单工厂模式测试方法
@@ -124,6 +128,17 @@ public class TestMain {
         facade.login();
         facade.pay();
     }
-
+    //享元模式测试方法
+    private static void testFlyWeight(){
+        FlyWeight flyWeightOne=new ConcreteFlyWeight(1);
+        FlyWeightFactory.getStatus(1);
+        flyWeightOne.operation(true);
+        FlyWeight flyWeightTwo=new ConcreteFlyWeight(1);
+        FlyWeightFactory.getStatus(1);
+        flyWeightTwo.operation(false);
+        FlyWeight flyWeightThree=new ConcreteFlyWeight(2);
+        FlyWeightFactory.getStatus(2);
+        flyWeightThree.operation(true);
+    }
 
 }
