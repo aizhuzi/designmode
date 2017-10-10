@@ -23,6 +23,12 @@ import com.bamboo.dedignmode.FactoryMode.SimpleWindowPhone;
 import com.bamboo.dedignmode.FlyWeightMode.ConcreteFlyWeight;
 import com.bamboo.dedignmode.FlyWeightMode.FlyWeight;
 import com.bamboo.dedignmode.FlyWeightMode.FlyWeightFactory;
+import com.bamboo.dedignmode.IteratorMode.AndroidPhoneRequest;
+import com.bamboo.dedignmode.IteratorMode.BossLeader;
+import com.bamboo.dedignmode.IteratorMode.DirectorLeader;
+import com.bamboo.dedignmode.IteratorMode.Groupleader;
+import com.bamboo.dedignmode.IteratorMode.IOSPhoneRequest;
+import com.bamboo.dedignmode.IteratorMode.WPPhoneRequest;
 import com.bamboo.dedignmode.ObserverMode.AndroidObserver;
 import com.bamboo.dedignmode.ObserverMode.ConcreteSubject;
 import com.bamboo.dedignmode.ObserverMode.IOSObserver;
@@ -54,8 +60,8 @@ public class TestMain {
         //testStragety();
         //testDecorator();
         //testFacade();
-        testFlyWeight();
-
+        //testFlyWeight();
+        testIterator();
     }
     //简单工厂模式测试方法
     private static void testSimpleFactory(){
@@ -140,5 +146,18 @@ public class TestMain {
         FlyWeightFactory.getStatus(2);
         flyWeightThree.operation(true);
     }
-
+    //责任链模式测试方法
+    private static void testIterator(){
+        WPPhoneRequest wpPhoneRequest=new WPPhoneRequest();
+        AndroidPhoneRequest androidPhoneRequest=new AndroidPhoneRequest();
+        IOSPhoneRequest iosPhoneRequest=new IOSPhoneRequest();
+        Groupleader groupleader=new Groupleader();
+        DirectorLeader directorLeader=new DirectorLeader();
+        BossLeader bossLeader=new BossLeader();
+        directorLeader.nextHandler=bossLeader;
+        groupleader.nextHandler=directorLeader;
+        groupleader.handleMoney(wpPhoneRequest);
+        groupleader.handleMoney(androidPhoneRequest);
+        groupleader.handleMoney(iosPhoneRequest);
+    }
 }
